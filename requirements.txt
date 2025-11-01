@@ -1,4 +1,5 @@
 sentence-transformers==2.2.2
+huggingface-hub==0.16.4
 langchain
 flask
 pypdf
