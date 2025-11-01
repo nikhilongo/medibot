@@ -82,11 +82,12 @@ def chat():
 
 
 # ------------------ Main ------------------
+# if __name__ == "__main__":
+#     app.run(host = "0.0.0.0",debug=True)              # for local
+
+
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0",debug=True)              # for local
-
-
-# if __name__ == "__main__":                          #for deployment
-#     from waitress import serve
-#     serve(app, host="0.0.0.0", debug=True)
+    port = int(os.environ.get("PORT", 8080))  # Render sets PORT
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=port)
 
