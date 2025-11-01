@@ -10,5 +10,5 @@ langchain-community
 langchain-google-genai
 langchain_experimental
 waitress
--e .
+#-e .
 
