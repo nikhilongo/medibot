@@ -11,5 +11,7 @@ langchain-community
 langchain-google-genai
 langchain_experimental
 waitress
-#-e .
+torch --index-url https://download.pytorch.org/whl/cpu
+transformers
+-e .
 
