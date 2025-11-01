@@ -82,5 +82,11 @@ def chat():
 
 
 # ------------------ Main ------------------
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)              # for local
+
+
+if __name__ == "__main__":                          #for deployment
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=10000)
+
