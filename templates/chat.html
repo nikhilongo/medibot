@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical RAG Chatbot</title>
+    <style>
+        body { font-family: Arial; background:#f4f4f4; }
+        #chatbox {
+            width: 60%; margin: auto; margin-top: 40px; 
+            background: white; padding: 20px; height: 400px;
+            overflow-y: scroll; border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        .msg { margin: 10px 0; }
+        .user { font-weight: bold; color: #007bff; }
+        .bot { font-weight: bold; color: #28a745; }
+        #inputBox {
+            width: 60%; margin: auto; margin-top: 15px;
+            display: flex;
+        }
+        #message {
+            width: 85%; padding: 10px; font-size: 16px;
+        }
+        #sendBtn {
+            width: 15%; background:#007bff; color:white; border:none;
+            font-size: 16px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chatbox"></div>
+
+<div id="inputBox">
+    <input id="message" type="text" placeholder="Ask a current affairs question..." autocomplete="off">
+    <button id="sendBtn" onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+    async function sendMessage() {
+        let msg = document.getElementById("message").value;
+        if (!msg) return;
+
+        let chatbox = document.getElementById("chatbox");
+        chatbox.innerHTML += `<div class="msg user">User: ${msg}</div>`;
+        document.getElementById("message").value = "";
+
+        let formData = new FormData();
+        formData.append("msg", msg);
+
+        let response = await fetch("/chat", {
+            method: "POST",
+            body: formData
+        });
+
+        let data = await response.text();
+        chatbox.innerHTML += `<div class="msg bot">Bot: ${data}</div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
